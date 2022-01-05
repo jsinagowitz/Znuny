@@ -445,7 +445,7 @@
         </Value>
     </Setting>
     <Setting Name="Frontend::RichTextExtraPlugins" Required="0" Valid="1">
-        <Description Translatable="1">Defines additional plugins for use in the rich text editor</Description>
+        <Description Translatable="1">Defines additional plugins for use in the rich text editor.</Description>
         <Navigation>Frontend::Base</Navigation>
         <Value>
             <Item ValueType="String">splitquote,contextmenu_linkopen</Item>
