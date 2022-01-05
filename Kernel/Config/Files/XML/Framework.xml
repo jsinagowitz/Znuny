@@ -430,6 +430,27 @@
             <Item ValueType="String" ValueRegex="">font-family:Geneva,Helvetica,Arial,sans-serif; font-size: 12px;</Item>
         </Value>
     </Setting>
+    <Setting Name="Frontend::RichTextFontSizes" Required="1" Valid="1">
+        <Description Translatable="1">Defines the selectable font sizes in the rich text editor.</Description>
+        <Navigation>Frontend::Base</Navigation>
+        <Value>
+            <Item ValueType="String">8px;10px;12px;14px;16px;18px;20px;22px;24px;26px;28px;30px;</Item>
+        </Value>
+    </Setting>
+    <Setting Name="Frontend::RichTextFontNames" Required="1" Valid="1">
+        <Description Translatable="1">Defines the selectable fonts in the rich text editor.</Description>
+        <Navigation>Frontend::Base</Navigation>
+        <Value>
+            <Item ValueType="String">Arial/Arial, Helvetica, sans-serif;Calibri;Comic Sans MS/Comic Sans MS, cursive;Courier New/Courier New, Courier, monospace;Georgia/Georgia, serif;Lucida Sans Unicode/Lucida Sans Unicode, Lucida Grande, sans-serif;Tahoma/Tahoma, Geneva, sans-serif;Times New Roman/Times New Roman, Times, serif;Trebuchet MS/Trebuchet MS, Helvetica, sans-serif;Verdana/Verdana, Geneva, sans-serif</Item>
+        </Value>
+    </Setting>
+    <Setting Name="Frontend::RichTextExtraPlugins" Required="0" Valid="1">
+        <Description Translatable="1">Defines additional plugins for use in the rich text editor</Description>
+        <Navigation>Frontend::Base</Navigation>
+        <Value>
+            <Item ValueType="String">splitquote,contextmenu_linkopen</Item>
+        </Value>
+    </Setting>
     <Setting Name="Frontend::RichText::EnhancedMode" Required="1" Valid="1">
         <Description Translatable="1">Defines if the enhanced mode should be used (enables use of table, replace, subscript, superscript, paste from word, etc.).</Description>
         <Navigation>Frontend::Base</Navigation>

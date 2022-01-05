@@ -6179,9 +6179,13 @@ sub SetRichTextParameters {
     my $ScreenRichTextHeight = $Param{Data}->{RichTextHeight} || $ConfigObject->Get("Frontend::RichTextHeight");
     my $ScreenRichTextWidth  = $Param{Data}->{RichTextWidth}  || $ConfigObject->Get("Frontend::RichTextWidth");
     my $RichTextType         = $Param{Data}->{RichTextType}   || '';
-    my $PictureUploadAction = $Param{Data}->{RichTextPictureUploadAction} || '';
-    my $TextDir             = $Self->{TextDirection}                      || '';
-    my $EditingAreaCSS      = 'body.cke_editable { ' . $ConfigObject->Get("Frontend::RichText::DefaultCSS") . ' }';
+    my $PictureUploadAction  = $Param{Data}->{RichTextPictureUploadAction} || '';
+    my $TextDir              = $Self->{TextDirection}                      || '';
+    my $EditingAreaCSS       = 'body.cke_editable { ' . $ConfigObject->Get("Frontend::RichText::DefaultCSS") . ' }';
+    my $FontSizes            = $Param{Data}->{RichTextFontSizes}    || $ConfigObject->Get("Frontend::RichTextFontSizes");
+    my $FontNames            = $Param{Data}->{RichTextFontNames}    || $ConfigObject->Get("Frontend::RichTextFontNames");
+    my $ExtraPlugins         = $Param{Data}->{RichTextExtraPlugins} || $ConfigObject->Get("Frontend::RichTextExtraPlugins");
+
 
     # decide if we need to use the enhanced mode (with tables)
     my @Toolbar;
@@ -6271,6 +6275,9 @@ sub SetRichTextParameters {
             Width          => $ScreenRichTextWidth,
             TextDir        => $TextDir,
             EditingAreaCSS => $EditingAreaCSS,
+            FontSizes      => $FontSizes,
+            FontNames      => $FontNames,
+            ExtraPlugins   => $ExtraPlugins,
             Lang           => {
                 SplitQuote  => $LanguageObject->Translate('Split Quote'),
                 RemoveQuote => $LanguageObject->Translate('Remove Quote'),
@@ -6318,6 +6325,9 @@ sub CustomerSetRichTextParameters {
     my $TextDir              = $Self->{TextDirection} || '';
     my $PictureUploadAction  = $Param{Data}->{RichTextPictureUploadAction} || '';
     my $EditingAreaCSS       = 'body { ' . $ConfigObject->Get("Frontend::RichText::DefaultCSS") . ' }';
+    my $FontSizes            = $Param{Data}->{RichTextFontSizes}    || $ConfigObject->Get("Frontend::RichTextFontSizes");
+    my $FontNames            = $Param{Data}->{RichTextFontNames}    || $ConfigObject->Get("Frontend::RichTextFontNames");
+    my $ExtraPlugins         = $Param{Data}->{RichTextExtraPlugins} || $ConfigObject->Get("Frontend::RichTextExtraPlugins");
 
     # decide if we need to use the enhanced mode (with tables)
     my @Toolbar;
@@ -6400,6 +6410,9 @@ sub CustomerSetRichTextParameters {
             Width          => $ScreenRichTextWidth,
             TextDir        => $TextDir,
             EditingAreaCSS => $EditingAreaCSS,
+            FontSizes      => $FontSizes,
+            FontNames      => $FontNames,
+            ExtraPlugins   => $ExtraPlugins,
             Lang           => {
                 SplitQuote => $LanguageObject->Translate('Split Quote'),
             },

@@ -164,7 +164,8 @@ Core.UI.RichTextEditor = (function (TargetNS) {
             removePlugins: CheckFormID($EditorArea).length ? '' : 'image2,uploadimage',
             forcePasteAsPlainText: false,
             format_tags: 'p;h1;h2;h3;h4;h5;h6;pre',
-            fontSize_sizes: '8px;10px;12px;16px;18px;20px;22px;24px;26px;28px;30px;',
+            fontSize_sizes: Core.Config.Get('RichText.FontSizes', '8px;10px;12px;14px;16px;18px;20px;22px;24px;26px;28px;30px;'),
+            font_names: Core.Config.Get('RichText.FontNames', ''),
             extraAllowedContent: 'div[type]{*}; img[*]; col[width]; style[*]{*}; *[id](*)',
             enterMode: CKEDITOR.ENTER_BR,
             shiftEnterMode: CKEDITOR.ENTER_BR,
@@ -172,11 +173,16 @@ Core.UI.RichTextEditor = (function (TargetNS) {
             toolbar: CheckFormID($EditorArea).length ? Core.Config.Get('RichText.Toolbar') : Core.Config.Get('RichText.ToolbarWithoutImage'),
             filebrowserBrowseUrl: '',
             filebrowserUploadUrl: UploadURL,
-            extraPlugins: 'splitquote,contextmenu_linkopen',
+            extraPlugins: Core.Config.Get('RichText.ExtraPlugins','splitquote,contextmenu_linkopen'),
             entities: false,
             skin: 'moono-lisa'
         };
         /*eslint-enable camelcase */
+
+        // fallback if no fonts are defined in sysconfig: RichTextEditor will use their default fonts
+        if (!EditorConfig.font_names){
+            delete EditorConfig.font_names
+        }
 
         // specific config for CodeMirror instances (e.g. XSLT editor)
         if (Core.Config.Get('RichText.Type') == 'CodeMirror') {
