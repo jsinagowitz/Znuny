@@ -6176,10 +6176,10 @@ sub SetRichTextParameters {
     my $LanguageObject = $Kernel::OM->Get('Kernel::Language');
     my $ConfigObject   = $Kernel::OM->Get('Kernel::Config');
 
-    my %RichtextSettings = %{ $ConfigObject->Get("Frontend::RichText::Settings") || {} };
-    for $RichTextSettingKey (keys %RichtextSettings) {
+    my %RichTextSettings = %{ $ConfigObject->Get("Frontend::RichText::Settings") || {} };
+    for my $RichTextSettingKey (keys %RichTextSettings) {
         if ($Param{Data}->{'RichText' . $RichTextSettingKey}) {
-            $RichtextSettings{$RichTextSettingKey} = $Param{Data}->{'RichText' . $RichTextSettingKey};
+            $RichTextSettings{$RichTextSettingKey} = $Param{Data}->{'RichText' . $RichTextSettingKey};
         }
     }
 
@@ -6273,7 +6273,7 @@ sub SetRichTextParameters {
     $Self->AddJSData(
         Key   => 'RichText',
         Value => {
-            %RichtextSettings,
+            %RichTextSettings,
             TextDir        => $TextDir,
             EditingAreaCSS => $EditingAreaCSS,
             Lang           => {
@@ -6318,10 +6318,10 @@ sub CustomerSetRichTextParameters {
     my $LanguageObject = $Kernel::OM->Get('Kernel::Language');
     my $ConfigObject   = $Kernel::OM->Get('Kernel::Config');
 
-    my %RichtextSettings = %{ $ConfigObject->Get("Frontend::RichText::Settings") || {} };
-    for $RichTextSettingKey (keys %RichtextSettings) {
+    my %RichTextSettings = %{ $ConfigObject->Get("Frontend::RichText::Settings") || {} };
+    for my $RichTextSettingKey (keys %RichTextSettings) {
         if ($Param{Data}->{'RichText' . $RichTextSettingKey}) {
-            $RichtextSettings{$RichTextSettingKey} = $Param{Data}->{'RichText' . $RichTextSettingKey};
+            $RichTextSettings{$RichTextSettingKey} = $Param{Data}->{'RichText' . $RichTextSettingKey};
         }
     }
 
