@@ -1,6 +1,6 @@
 # --
 # Copyright (C) 2001-2021 OTRS AG, https://otrs.com/
-# Copyright (C) 2021 Znuny GmbH, https://znuny.org/
+# Copyright (C) 2021-2022 Znuny GmbH, https://znuny.org/
 # Copyright (C) 2010 Thomas Kaltenbrunner <tkaltenbrunner at opc.de>
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
@@ -33,6 +33,21 @@ sub Data {
     $Self->{DecimalSeparator}  = ',';
     $Self->{ThousandSeparator} = '.';
     $Self->{Translation} = {
+
+        'Handles changes to data of modules which use the DBCRUD base module.'
+            => 'Verarbeitet Änderungen an Daten von Modulen, die das DBCRUD-Modul als Basis nutzen.',
+        'Default format for export files.'                    => 'Default-Format für Exportdateien.',
+        'Separator for exported CSV files.'                   => 'Trennzeichen für exportierte CSV-Dateien.',
+        'Quoting character for exported CSV files.'           => 'Anführungszeichen für exportierte CSV-Dateien.',
+        'Cache settings for DBCRUD modules (default: 1 day).' => 'Cache-Einstellungen für DBCRUD-Module (Standardwert: 1 Tag).',
+
+
+        'Dynamic fields shown in the ticket bulk screen of the agent interface.' => 'Dynamische Felder, die in der Ticket-Sammelaktion in der Agentenoberfläche angezeigt werden.',
+        'This configuration defines if a dynamic field has to be checked in the agent ticket bulk view to get set for each ticket. This prevents unwanted overwrite of dynamic field values with their default or even empty values.' => 'Diese Konfiguration definiert, ob ein dynamisches Feld in der Ticket-Sammelaktion zum Setzen mit einer Checkbox markiert werden muss. Dies verhindert das ungewollte Überschreiben von dynamischen Feldwerten durch deren Standardwerte oder sogar leeren Inhalt.',
+        'Loader module registration for AgentTicketBulk.' => 'Loader-Modulregistrierung für die Ticket-Sammelaktion.',
+        'Sets the service in the ticket bulk screen in the agent interface (Ticket::Service needs to be enabled).' => 'Setzt den Service in der Ticket-Sammelaktion in der Agentenoberfläche (Ticket::Service muss aktiviert sein).',
+        'Sets if service must be selected by the agent.' => 'Legt fest, ob der Service durch Agenten ausgewählt werden muss.',
+        'This configuration defines all possible screens to enable or disable dynamic fields.' => 'Diese Konfiguration definiert alle möglichen Screens, um dynamische Felder zu aktivieren oder zu deaktivieren.',
 
         # Template: AdminACL
         'ACL Management' => 'ACL-Verwaltung',
@@ -6816,8 +6831,8 @@ Ihr Helpdesk-Team
             'Bestimmt den Standard-Absendertp für Telefon-Tickets in der Ausgehende-Telefon-Tickets-Anzeige in der Agenten-Oberfläche.',
         'Defines the default sender type for tickets in the ticket zoom screen of the customer interface.' =>
             'Bestimmt den Standard-Absendertp für Telefon-Tickets in der TicketZoom-Anzeige in der Agenten-Oberfläche.',
-        'Defines the default shown ticket search attribute for ticket search screen (AllTickets/ArchivedTickets/NotArchivedTickets).' =>
-            'Definiert das standardmäßig angezeigte Ticket-Such-Attribut für die Ticket-Suchmaske (AlleTickets/ArchivierteTickets/NichtArchivierteTickets).',
+        'Defines the default shown ticket search attribute for ticket search screen.' =>
+            'Definiert das standardmäßig angezeigte Ticket-Such-Attribut für die Ticket-Suchmaske.',
         'Defines the default shown ticket search attribute for ticket search screen.' =>
             'Definiert die standardmäßig angezeigten Ticketsuchattribute für die Ticketsuche.',
         'Defines the default shown ticket search attribute for ticket search screen. Example: "Key" must have the name of the Dynamic Field in this case \'X\', "Content" must have the value of the Dynamic Field depending on the Dynamic Field type,  Text: \'a text\', Dropdown: \'1\', Date/Time: \'Search_DynamicField_XTimeSlotStartYear=1974; Search_DynamicField_XTimeSlotStartMonth=01; Search_DynamicField_XTimeSlotStartDay=26; Search_DynamicField_XTimeSlotStartHour=00; Search_DynamicField_XTimeSlotStartMinute=00; Search_DynamicField_XTimeSlotStartSecond=00; Search_DynamicField_XTimeSlotStopYear=2013; Search_DynamicField_XTimeSlotStopMonth=01; Search_DynamicField_XTimeSlotStopDay=26; Search_DynamicField_XTimeSlotStopHour=23; Search_DynamicField_XTimeSlotStopMinute=59; Search_DynamicField_XTimeSlotStopSecond=59;\' and or \'Search_DynamicField_XTimePointFormat=week; Search_DynamicField_XTimePointStart=Before; Search_DynamicField_XTimePointValue=7\';.' =>
@@ -8243,8 +8258,8 @@ Ihr Helpdesk-Team
         'Selects the cache backend to use.' => 'Gibt das zu verwendende Cache Backend an.',
         'Selects the module to handle uploads via the web interface. "DB" stores all uploads in the database, "FS" uses the file system.' =>
             'Auswahl wie Uploads über die Web-Oberfläche gehandhabt werden sollen. "DB" speichert alle Uploads in der Datenbank, "FS" nutzt das Dateisystem.',
-        'Selects the ticket number generator module. "AutoIncrement" increments the ticket number, the SystemID and the counter are used with SystemID.counter format (e.g. 1010138, 1010139). With "Date" the ticket numbers will be generated by the current date, the SystemID and the counter. The format looks like Year.Month.Day.SystemID.counter (e.g. 200206231010138, 200206231010139). With "DateChecksum"  the counter will be appended as checksum to the string of date and SystemID. The checksum will be rotated on a daily basis. The format looks like Year.Month.Day.SystemID.Counter.CheckSum (e.g. 2002070110101520, 2002070110101535).' =>
-            'Definiert das Modul zur Generierung von Ticketnummern. "AutoIncrement" erhöht den Zähler fortlaufend, dazu werden System-ID und Zähler im Format "System-ID.Zähler" dargestellt. "Datum" generiert Ticketnummern basierend auf dem jeweiligen Datum, der System-ID und dem Zähler im Format "Jahr.Monat.Tag.System-ID.Zähler" (z. B. "200206231010138", "200206231010139"). "DateChecksum" fügt den Zähler als Checksumme nach Datum und System-ID ein. Die Checksumme ändert sich dabei täglich. Format: "Jahr.Monat.Tag.System-ID.Zähler.Checksumme" (z. B. "2002070110101520", "2002070110101535").',
+        'Selects the ticket number generator module. "AutoIncrement" increments the ticket number, the SystemID and the counter are used with SystemID.counter format (e.g. 1010138, 1010139). With "Date" the ticket numbers will be generated by the current date, the SystemID and the counter. The format looks like Year.Month.Day.SystemID.counter (e.g. 200206231010138, 200206231010139). With "DateChecksum"  the counter will be appended as checksum to the string of date and SystemID. The checksum will be rotated on a daily basis. The format looks like Year.Month.Day.SystemID.Counter.CheckSum (e.g. 2002070110101520, 2002070110101535). With "Random" the ticket numbers will be generated by 12 random numbers. The format looks like SystemID.RandomNumbers (e.g. 10123456789012).' =>
+            'Definiert das Modul zur Generierung von Ticketnummern. "AutoIncrement" erhöht den Zähler fortlaufend, dazu werden System-ID und Zähler im Format "System-ID.Zähler" dargestellt. "Datum" generiert Ticketnummern basierend auf dem jeweiligen Datum, der System-ID und dem Zähler im Format "Jahr.Monat.Tag.System-ID.Zähler" (z. B. "200206231010138", "200206231010139"). "DateChecksum" fügt den Zähler als Checksumme nach Datum und System-ID ein. Die Checksumme ändert sich dabei täglich. Format: "Jahr.Monat.Tag.System-ID.Zähler.Checksumme" (z. B. "2002070110101520", "2002070110101535"). Mit "Random" werden die Ticketnummern aus 12 Zufallszahlen generiert. Format: "SysteID.RandomNumbers" (z.B. 10123456789012).',
         'Send a unit test file' => 'Unit-Test-Datei versenden',
         'Send new outgoing mail from this ticket' => 'Neue ausgehende E-Mail aus diesem Ticket heraus senden',
         'Send notifications to users.' => 'Benachrichtigungen an Agenten verschicken.',
@@ -9030,7 +9045,10 @@ Ihr Helpdesk-Team
         'responsible' => 'Verantwortlicher',
         'reverse' => 'umgekehrt',
         'stats' => 'stats',
-
+        'all tickets'         => 'alle Tickets',
+        'archived tickets'    => 'archivierte Tickets',
+        'not archived tickets' => 'nicht archivierte Tickets',
+        'Clear log entries' => 'Lösche Protokolleinträge',
     };
 
     $Self->{JavaScriptStrings} = [

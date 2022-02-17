@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 # --
 # Copyright (C) 2001-2021 OTRS AG, https://otrs.com/
-# Copyright (C) 2021 Znuny GmbH, https://znuny.org/
+# Copyright (C) 2021-2022 Znuny GmbH, https://znuny.org/
 # --
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -210,6 +210,18 @@ my @NeededModules = (
         },
     },
     {
+        Module    => 'Data::UUID',
+        Required  => 1,
+        Comment   => 'Required to generate UUIDs.',
+        InstTypes => {
+            aptget => undef,
+            emerge => undef,
+            yum    => undef,
+            zypper => undef,
+            ports  => undef,
+        },
+    },
+    {
         Module    => 'Date::Format',
         Required  => 1,
         InstTypes => {
@@ -324,6 +336,30 @@ my @NeededModules = (
             emerge => 'dev-perl/Encode-HanExtra',
             zypper => 'perl-Encode-HanExtra',
             ports  => 'chinese/p5-Encode-HanExtra',
+        },
+    },
+    {
+        Module          => 'Excel::Writer::XLSX',
+        VersionRequired => '0.95',
+        Required        => 0,
+        Comment         => 'Required for the creation of Excel statistical reports.',
+        InstTypes       => {
+            aptget => 'libexcel-writer-xlsx-perl',
+            emerge => 'dev-perl/Excel-Writer-XLSX',
+            zypper => 'perl-Excel-Writer-XLSX',
+            ports  => 'textproc/p5-Excel-Writer-XLSX',
+        },
+    },
+    {
+        Module          => 'Hash::Merge',
+        VersionRequired => '0.300',
+        Required        => 0,
+        Comment         => 'Required for the creation of Excel statistical reports.',
+        InstTypes       => {
+            aptget => 'libhash-merge-perl',
+            emerge => 'dev-perl/Hash-Merge',
+            zypper => 'perl-Hash-Merge',
+            ports  => 'textproc/p5-Hash-Merge',
         },
     },
     {
@@ -521,7 +557,7 @@ my @NeededModules = (
     {
         Module    => 'Spreadsheet::XLSX',
         Required  => 0,
-        Comment   => 'Spreadsheet::XLSX enables import of Excel files in certain dialogs.',
+        Comment   => 'Spreadsheet::XLSX enables import and export of Excel files in certain dialogs.',
         InstTypes => {
             aptget => 'libspreadsheet-xlsx-perl',
             emerge => 'dev-perl/Spreadsheet-XLSX',

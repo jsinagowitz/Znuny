@@ -161,6 +161,7 @@
         <Value>
             <Hash>
                 <!-- Views -->
+                <Item Key="Ticket::Frontend::AgentTicketBulk###DynamicField">AgentTicketBulk</Item>
                 <Item Key="Ticket::Frontend::AgentTicketClose###DynamicField">AgentTicketClose</Item>
                 <Item Key="Ticket::Frontend::AgentTicketCompose###DynamicField">AgentTicketCompose</Item>
                 <Item Key="Ticket::Frontend::AgentTicketEmail###DynamicField">AgentTicketEmail</Item>
@@ -399,7 +400,7 @@
     </Setting>
     <Setting Name="CustomerFrontend::Module###AJAXDynamicFieldWebservice" Required="1" Valid="1">
         <Description Translatable="1">Frontend module for the customer interface that provides the AJAX interface for the web service dynamic field backends.</Description>
-        <Navigation>Frontend::Agent::ModuleRegistration</Navigation>
+        <Navigation>Frontend::Customer::ModuleRegistration</Navigation>
         <Value>
             <Item ValueType="FrontendRegistration">
                 <Hash>
@@ -1345,6 +1346,73 @@
         <Navigation>Core::ProcessManagement</Navigation>
         <Value>
             <Item ValueType="String" ValueRegex="">%3$s#%1$d: %2$s</Item>
+        </Value>
+    </Setting>
+
+    <!--
+        Advanced Bulk Action
+    -->
+    <Setting Name="Ticket::Frontend::AgentTicketBulk###Service" Required="0" Valid="1">
+        <Description Translatable="1">Sets the service in the ticket bulk screen in the agent interface (Ticket::Service needs to be enabled).</Description>
+        <Navigation>Frontend::Agent::View::TicketBulk</Navigation>
+        <Value>
+            <Item ValueType="Checkbox">0</Item>
+        </Value>
+    </Setting>
+    <Setting Name="Ticket::Frontend::AgentTicketBulk###DynamicField" Required="0" Valid="1">
+        <Description Translatable="1">Dynamic fields shown in the ticket bulk screen of the agent interface.</Description>
+        <Navigation>Frontend::Agent::View::TicketBulk</Navigation>
+        <Value>
+            <Hash>
+                <DefaultItem ValueType="Select">
+                    <Item ValueType="Option" Value="0" Translatable="1">0 - Disabled</Item>
+                    <Item ValueType="Option" Value="1" Translatable="1">1 - Enabled</Item>
+                    <Item ValueType="Option" Value="2" Translatable="1">2 - Enabled and required</Item>
+                </DefaultItem>
+            </Hash>
+        </Value>
+    </Setting>
+    <Setting Name="Ticket::Frontend::AgentTicketBulk###DynamicFieldRequireActivation" Required="0" Valid="1">
+        <Description Translatable="1">This configuration defines if a dynamic field has to be checked in the agent ticket bulk view to get set for each ticket. This prevents unwanted overwrite of dynamic field values with their default or even empty values.</Description>
+        <Navigation>Frontend::Agent::View::TicketBulk</Navigation>
+        <Value>
+            <Item ValueType="Checkbox">1</Item>
+        </Value>
+    </Setting>
+
+    <!--
+        DBCRUD (formerly known as database backend)
+    -->
+    <Setting Name="DBCRUD###Export###DefaultFormat" Required="1" Valid="1" ConfigLevel="200">
+        <Description Translatable="1">Default format for export files.</Description>
+        <Navigation>Core</Navigation>
+        <Value>
+            <Item ValueType="String" ValueRegex="">yml</Item>
+        </Value>
+    </Setting>
+    <Setting Name="DBCRUD###Export###CSV###Separator" Required="1" Valid="1" ConfigLevel="200">
+        <Description Translatable="1">Separator for exported CSV files.</Description>
+        <Navigation>Core</Navigation>
+        <Value>
+            <Item ValueType="String" ValueRegex="">;</Item>
+        </Value>
+    </Setting>
+    <Setting Name="DBCRUD###Export###CSV###Quote" Required="1" Valid="1" ConfigLevel="200">
+        <Description Translatable="1">Quoting character for exported CSV files.</Description>
+        <Navigation>Core</Navigation>
+        <Value>
+            <Item ValueType="String" ValueRegex="">"</Item>
+        </Value>
+    </Setting>
+    <Setting Name="DBCRUD::EventModulePost###9990-DBCRUD" Required="0" Valid="1">
+        <Description Translatable="1">Handles changes to data of modules which use the DBCRUD base module.</Description>
+        <Navigation>Core::Event::Ticket</Navigation>
+        <Value>
+            <Hash>
+                <Item Key="Module">Kernel::System::DBCRUD::Event::DBCRUD</Item>
+                <Item Key="Transaction">1</Item>
+                <Item Key="Event">.*(Add|Update|Delete|Export|Import|Copy)</Item>
+            </Hash>
         </Value>
     </Setting>
 

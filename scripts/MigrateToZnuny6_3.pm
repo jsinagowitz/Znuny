@@ -1,6 +1,6 @@
 # --
 # Copyright (C) 2001-2021 OTRS AG, https://otrs.com/
-# Copyright (C) 2021 Znuny GmbH, https://znuny.org/
+# Copyright (C) 2021-2022 Znuny GmbH, https://znuny.org/
 # --
 # This software comes with ABSOLUTELY NO WARRANTY. For details, see
 # the enclosed file COPYING for license information (GPL). If you
@@ -216,15 +216,24 @@ sub _TasksGet {
 
         # >>> Znuny 6.3
         {
-            Message => 'Upgrade database structure',
+            Message => 'Migrate Excel stats format definitions',
             Module  => 'scripts::Migration::Znuny6_3::MigrateExcelStatsFormatDefinitions',
         },
         {
             Message => 'Upgrade database structure',
             Module  => 'scripts::Migration::Znuny6_3::UpgradeDatabaseStructure',
         },
+        {
+            Message => 'Migrate SysConfig settings',
+            Module  => 'scripts::Migration::Znuny6_3::MigrateSysConfigSettings',
+        },
+        {
+            Message => 'Migrate database backends',
+            Module  => 'scripts::Migration::Znuny6_3::MigrateDatabaseBackends',
+        },
 
         # <<< Znuny 6.3
+
         {
             Message => 'Rebuild configuration',
             Module  => 'scripts::Migration::Base::RebuildConfig',
